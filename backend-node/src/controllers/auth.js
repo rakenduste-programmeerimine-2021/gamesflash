@@ -3,11 +3,12 @@ const jwt = require("jsonwebtoken")
 const User = require("../models/User")
 
 exports.login = async (req, res) => {
-  const { userName, email, password } = req.body
+  const { userName, password } = req.body
 
   try {
     const user = await User.findOne({ userName })
-    if (!user) throw Error("User with this e-mail does not exist")
+    if (!user) throw Error("User with this username does not exist")
+
     
     const isMatch = await bcrypt.compare(password, user.password)
     if (!isMatch) throw Error("I should not say that the password does not match")
@@ -15,11 +16,11 @@ exports.login = async (req, res) => {
     const userTemplate = {
       id: user.id,
       userName,
-      email,
-      creationDate,
-      aCC,
-      postCount,
-      commentCount
+      email: user.email,
+      creationDate: user.creationDate,
+      aCC: user.aCC,
+      postCount: user.postCount,
+      commentCount: user.commentCount
     }
 
     const token = jwt.sign(userTemplate, process.env.JWT_SECRET)
@@ -34,12 +35,11 @@ exports.login = async (req, res) => {
 }
 
 exports.signup = async (req, res) => {
-  const { userName, email, password, aCC } = req.body
+  const { userName, email, password } = req.body
 
   try {
     const user = await User.findOne({ userName })
-
-    if (user) throw Error("User with that e-mail already exists")
+    if (user) throw Error("User with that username already exists")
 
     const salt = await bcrypt.genSalt(10)
     if (!salt) throw Error("Adding and creating password encryption failed")
@@ -50,9 +50,7 @@ exports.signup = async (req, res) => {
     const newUser = new User({
       userName,
       email,
-      password: hash,
-      creationDate,
-      aCC
+      password: hash
     })
 
     const savedUser = await newUser.save()
@@ -65,8 +63,8 @@ exports.signup = async (req, res) => {
 }
 
 exports.deleteUser = async (req, res) => {
-  const { userName, aCC } = req.params;
-  if(aCC % 3 == 0 && aCC > 873332 && aCC < 872995) {
+  const { userName, aCC } = req.body;
+  if(aCC == 873333 % 3 == 0 && aCC > 873332 && aCC < 873995) {
     const user = await User.findOneAndDelete({ userName: userName })
     if (!user) res.status(404).send("User with that nickname does not exist")
     res.status(200).send(`Successfully deleted the following user: ${user.userName}`)
