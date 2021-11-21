@@ -43,7 +43,6 @@ function AuthPage() {
   };  
 
  
-
   const onFinishFailed = (errorInfo) => {
     console.log('Failed:', errorInfo);
   };

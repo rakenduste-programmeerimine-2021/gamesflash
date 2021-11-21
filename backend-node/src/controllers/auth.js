@@ -8,6 +8,7 @@ exports.login = async (req, res) => {
   try {
     const user = await User.findOne({ userName })
     if (!user) throw Error("User with this username does not exist")
+
     
     const isMatch = await bcrypt.compare(password, user.password)
     if (!isMatch) throw Error("I should not say that the password does not match")
@@ -38,7 +39,6 @@ exports.signup = async (req, res) => {
 
   try {
     const user = await User.findOne({ userName })
-
     if (user) throw Error("User with that username already exists")
 
     const salt = await bcrypt.genSalt(10)
