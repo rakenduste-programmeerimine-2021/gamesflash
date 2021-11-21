@@ -12,13 +12,15 @@ const authRoutes = require('./routes/auth');
 const app = express()
 app.use(express.json());
 
+app.use(cors({
+  origin:"http://localhost:3000"
+}));
+
 //tulevikus
 //app.use('/api/post', postRoutes);
 app.use('/api/auth', authRoutes);
 
-app.use(cors({
-  origin:"http://localhost:3000"
-}));
+
 
 app.get('/', (req, res) => {
   res.send('Working')

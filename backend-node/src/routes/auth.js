@@ -6,10 +6,13 @@ const { check } = require("express-validator");
 router.post(
   "/login",
   [
-    check("email")
-      .isEmail()
-      .normalizeEmail()
-      .withMessage("E-mail must be correctly formatted!"),
+    check("userName")
+      .isLength({ max: 20 })
+      .withMessage("Username length must be under 20 characters long!")
+      .trim()
+      .exists()
+      .matches(/^[A-ZÕÄÖÜa-zõäöü]+$/)
+      .withMessage("Username must be alphabetic!"),
     check("password")
       .isLength({ min: 6 })
       .withMessage("Password must be at least 6 characters long!"),
@@ -44,8 +47,8 @@ router.post(
   authController.signup
 );
 
-router.delete(
-  "/delete/:username",
+router.post(
+  "/delete/",
   [
     check("userName")
       .trim()

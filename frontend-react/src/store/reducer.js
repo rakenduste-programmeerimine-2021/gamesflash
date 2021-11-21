@@ -37,16 +37,20 @@ const authReducer = (state, action) => {
         ...state,
         token: action.payload.token,
         email: action.payload.email,
-        firstName: action.payload.firstName,
-        lastName: action.payload.lastName
+        userName: action.payload.userName,
+        creationDate: action.payload.creationDate,
+        postCount: action.payload.postCount,
+        commentCount: action.payload.commentCount
       }
     case USER_LOGOUT:
       return {
         ...state,
         token: null,
         email: null,
-        firstName: null,
-        lastName: null
+        userName: null,
+        creationDate: null,
+        postCount: null,
+        commentCount: null
       }
     default:
       return state
