@@ -7,6 +7,8 @@ import { Layout } from "antd";
 import AuthPage from "./pages/AuthPage";
 import './components/App.css';
 import Sider from "antd/lib/layout/Sider";
+import CreatePostPage from "./pages/CreatePostPage";
+import UpdatePostPage from "./pages/UpdatePostPage";
 
 function App() {
   const { Content, Footer } = Layout;
@@ -21,6 +23,8 @@ function App() {
                   <Route exact path="/login" component={AuthPage} />
                   <Route exact path="/register" component={RegistrationPage} />
                   <Route exact path="/profile" component={ProfilePage} />
+                  <Route exact path="/createpost" component={CreatePostPage} />
+                  <Route exact path="/updatepost" component={UpdatePostPage} />
                 </Switch>
               </Content>
           </div>

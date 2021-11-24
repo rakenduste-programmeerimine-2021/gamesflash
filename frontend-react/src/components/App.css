@@ -54,3 +54,10 @@
   align-items: center;
   justify-content: center;
 }
+
+.categoryLabel {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: -270px;
+}
