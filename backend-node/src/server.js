@@ -5,8 +5,8 @@ const jwtAuth = require("./middleware/jwtAuth")
 var cors = require("cors")
 require("dotenv").config()
 
-//tulevikuks:
-//const postRoutes = require('./routes/post');
+
+const postRoutes = require('./routes/post');
 const authRoutes = require('./routes/auth');
 
 const app = express()
@@ -15,8 +15,8 @@ app.use(express.json());
 app.use(cors({
   origin:"http://localhost:3000"
 }));
-//tulevikus
-//app.use('/api/post', postRoutes);
+
+app.use('/api/post', postRoutes);
 app.use('/api/auth', authRoutes);
 
 app.get('/', (req, res) => {
