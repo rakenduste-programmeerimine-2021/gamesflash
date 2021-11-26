@@ -9,6 +9,9 @@ import './components/App.css';
 import Sider from "antd/lib/layout/Sider";
 import CreatePostPage from "./pages/CreatePostPage";
 import UpdatePostPage from "./pages/UpdatePostPage";
+import SocialPosts from "./pages/SocialPosts";
+import GamingPosts from "./pages/GamingPosts";
+import DetailedPostPage from "./pages/DetailedPostPage";
 
 function App() {
   const { Content, Footer } = Layout;
@@ -25,6 +28,9 @@ function App() {
                   <Route exact path="/profile" component={ProfilePage} />
                   <Route exact path="/createpost" component={CreatePostPage} />
                   <Route exact path="/updatepost" component={UpdatePostPage} />
+                  <Route exact path="/social" component={SocialPosts} />
+                  <Route exact path="/gaming" component={GamingPosts} />
+                  <Route exact path="/post" component={DetailedPostPage} />
                 </Switch>
               </Content>
           </div>
