@@ -1,5 +1,7 @@
 const Post = require('../models/Post')
+
 const User = require('../models/User')
+
 
 exports.getSocialPosts = async (req, res) => {
   const posts = await Post.find({category: "social"})
@@ -35,6 +37,7 @@ exports.createPost = async (req, res) => {
   }
 
   const createdPost = new Post(newPost)
+
   const user = await User.findOne({userName: userName})
   user.postCount = user.postCount + 1;
   const updatedCount = user.save();
