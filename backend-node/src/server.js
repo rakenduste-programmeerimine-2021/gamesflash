@@ -8,6 +8,7 @@ require("dotenv").config()
 
 const postRoutes = require('./routes/post');
 const authRoutes = require('./routes/auth');
+const commentRoutes = require('./routes/comment');
 
 const app = express()
 app.use(express.json());
@@ -18,6 +19,7 @@ app.use(cors({
 
 app.use('/api/post', postRoutes);
 app.use('/api/auth', authRoutes);
+app.use('/api/comment', commentRoutes);
 
 app.get('/', (req, res) => {
   res.send('Working')
