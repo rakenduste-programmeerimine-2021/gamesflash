@@ -8,6 +8,7 @@ require("dotenv").config()
 
 const postRoutes = require('./routes/post');
 const authRoutes = require('./routes/auth');
+const commentRoutes = require('./routes/comment');
 
 const app = express()
 app.use(express.json());
@@ -15,9 +16,10 @@ app.use(express.json());
 app.use(cors({
   origin:"http://localhost:3000"
 }));
-//tulevikus
-//app.use('/api/post', postRoutes);
+
+app.use('/api/post', postRoutes);
 app.use('/api/auth', authRoutes);
+app.use('/api/comment', commentRoutes);
 
 app.use('/api/post', postRoutes);
 app.use('/api/auth', authRoutes);
