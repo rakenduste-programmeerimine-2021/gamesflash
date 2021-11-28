@@ -1,6 +1,5 @@
 import { Table, Tag, Space, Layout, Search, Input } from 'antd';
-
-
+import React from "react";
 
 function SocialPosts() {
     const columns = [
@@ -51,20 +50,25 @@ function SocialPosts() {
         },
       ];
 
-      function onChange(pagination, filters, sorter) {
-        console.log('params', pagination, filters, sorter);
-      }
-
       const { Search } = Input;
-      const onSearch = value => console.log(value);
+
+      const [search, setSearch] = React.useState("");
+      const handleSearch = (event) => {
+        setSearch(event.target.value);
+        console.log(event.target.value);
+      };
+
 
 return(
     <Layout>
         <h1 className="postCategoryLabel">SOCIAL</h1>
-        <Search placeholder="Search a post..." onSearch={onSearch} style={{ width: 250, paddingBottom: 5 }} />
-        <Table dataSource={data} columns={columns} onChange={onChange} size="middle" />
+        <Search placeholder="Search a post..." onChange={handleSearch} style={{ width: 250, paddingBottom: 5 }} />
+        <Table dataSource={
+          data.filter((json) =>
+            json.title.toLowerCase().includes(search.toLowerCase())
+          )
+        } columns={columns} size="middle" />
     </Layout>
-    
     );
 }
 

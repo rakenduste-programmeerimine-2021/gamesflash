@@ -1,5 +1,5 @@
 import { Table, Tag, Space, Layout, Search, Input } from 'antd';
-
+import React from "react";
 
 function GamingPosts() {
     const columns = [
@@ -17,7 +17,7 @@ function GamingPosts() {
         {
           title: 'Date',
           dataIndex: 'date',
-          key: 'age',
+          key: 'date',
           defaultSortOrder: 'descend',
           sorter: (a, b) => new Date(a.date) - new Date(b.date),
         },
@@ -50,19 +50,24 @@ function GamingPosts() {
         },
       ];
 
-      function onChange(pagination, filters, sorter) {
-        console.log('params', pagination, filters, sorter);
-      }
-
       const { Search } = Input;
-      const onSearch = value => console.log(value);
+      
+      const [search, setSearch] = React.useState("");
+      const handleSearch = (event) => {
+        setSearch(event.target.value);
+        console.log(event.target.value);
+      };
       
 
   return(
     <Layout>
         <h1 className="postCategoryLabel">GAMING</h1>
-        <Search placeholder="Search a post..." onSearch={onSearch} style={{ width: 250, paddingBottom: 5 }} />
-        <Table dataSource={data} columns={columns} onChange={onChange} size="middle" />
+        <Search placeholder="Search a post..." onChange={handleSearch} style={{ width: 250, paddingBottom: 5 }} />
+        <Table dataSource={
+          data.filter((json) =>
+            json.title.toLowerCase().includes(search.toLowerCase())
+          )
+        } columns={columns} size="middle" />
     </Layout>
   );
 }
