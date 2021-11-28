@@ -4,6 +4,10 @@ export const USER_LOGIN = "USER_LOGIN"
 export const USER_LOGOUT = "USER_LOGOUT"
 export const POST_EMPTY = "POST_EMPTY"
 export const POSTS_UPDATE = "POST_UPDATE"
+export const COMMENT_ADD = "COMMENT_ADD"
+export const COMMENT_EMPTY = "COMMENT_EMPTY"
+export const COMMENTS_UPDATE = "COMMENTS_UPDATE"
+export const SINGLE_POST = "SINGLE_POST"
 
 export const addPost = post => ({
   type: POST_ADD,
@@ -19,10 +23,28 @@ export const emptyPost = () => ({
   type: POST_EMPTY
 })
 
-// Lisada siis uus konstant selle jaoks ja muuta ka reduceris
 export const updatePosts = array => ({
   type: POSTS_UPDATE,
   payload: array
+})
+
+export const addSinglePost = data => ({
+  type: SINGLE_POST,
+  payload: data
+})
+
+export const addComment = comment => ({
+  type: COMMENT_ADD,
+  payload: comment
+})
+
+export const updateComments = array => ({
+  type: COMMENTS_UPDATE,
+  payload: array
+})
+
+export const emptyComment = () => ({
+  type: COMMENT_EMPTY
 })
 
 export const loginUser = data => ({
