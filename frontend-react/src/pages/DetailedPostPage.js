@@ -1,6 +1,53 @@
-import { Card, Comment, Tooltip, List, Layout, Form, Button, Input } from 'antd';
+import { Card, Comment, Tooltip, List, Layout, Form, Button, Input, message } from 'antd';
+import { addComment, addSinglePost } from '../store/actions';
+import { useContext, useState, useEffect } from "react";
+import { Context } from "../store";
 
 function DetailedPostPage() {
+  const [state, dispatch] = useContext(Context);
+  var postID = 332211112233;
+  
+  useEffect(() => {
+    console.log("olen postid " + postID)
+    fetch("http://localhost:8081/api/post/post/"+postID, {
+        method: "GET"
+    }).then(response => {
+        if(response.ok){
+          return response.json();
+        } else {
+          throw new Error("This post does not exist!");
+        }
+    }).then(data => {
+        dispatch(addSinglePost(data));
+        getComments(postID);
+    }).catch((error) => {
+        showError(error);
+    })
+  }, [])
+
+  const getComments = (postID) => {
+    fetch("http://localhost:8081/api/comment/comments/"+postID, {
+        method: "GET"
+    }).then(response => {
+        if(response.ok){
+          return response.json();
+        } else {
+          throw new Error("Error getting comments!");
+        }
+    }).then(data => {
+        dispatch(addComment(data));
+    }).catch((error) => {
+        showError(error);
+    })
+  };
+
+  const showError = (error) =>{
+    message.error(error.toString());
+  }; 
+
+  
+  console.log(state);
+
     const data = [
         {
           author: 'Oliver',

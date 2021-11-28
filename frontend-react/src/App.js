@@ -2,7 +2,6 @@ import { BrowserRouter, Route, Switch } from "react-router-dom";
 import Header from "./components/Header";
 import RegistrationPage from "./pages/RegistrationPage";
 import ProfilePage from "./pages/ProfilePage";
-import { DatePicker } from "antd";
 import { Layout } from "antd";
 import AuthPage from "./pages/AuthPage";
 import './components/App.css';
@@ -30,7 +29,7 @@ function App() {
                   <Route exact path="/updatepost" component={UpdatePostPage} />
                   <Route exact path="/social" component={SocialPosts} />
                   <Route exact path="/gaming" component={GamingPosts} />
-                  <Route exact path="/post" component={DetailedPostPage} />
+                  <Route path="/post" component={DetailedPostPage} />
                 </Switch>
               </Content>
           </div>

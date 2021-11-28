@@ -1,4 +1,4 @@
-import { POST_ADD, POST_REMOVE, POST_EMPTY, USER_LOGIN, USER_LOGOUT, POSTS_UPDATE } from "./actions";
+import { POST_ADD, POST_REMOVE, POST_EMPTY, USER_LOGIN, USER_LOGOUT, POSTS_UPDATE, COMMENTS_UPDATE, COMMENT_EMPTY, COMMENT_ADD, SINGLE_POST } from "./actions";
 
 const postReducer = (state, action) => {
   switch(action.type){
@@ -6,7 +6,8 @@ const postReducer = (state, action) => {
       return {
         ...state,
         data: state.data.concat(action.payload)
-      };
+      }
+
     case POST_REMOVE:
       return {
         ...state,
@@ -25,6 +26,50 @@ const postReducer = (state, action) => {
           data: [],
           data: state.data.concat(action.payload)
         }
+    default:
+      return state
+  }
+}
+
+const singlePostReducer = (state, action) => {
+  switch(action.type){
+    case SINGLE_POST:
+      return {
+        ...state,
+        
+        userName: action.payload[0].userName,//action.payload.userName,
+        postID: action.payload[0].postID,
+        postTitle: action.payload[0].postTitle,
+        content: action.payload[0].content,
+        category: action.payload[0].category,
+        creationDate: action.payload[0].creationDate
+      }
+    default:
+      return state
+  }
+}
+
+const commentReducer = (state, action) => {
+  switch(action.type){
+    case COMMENT_ADD:
+      return {
+        ...state,
+        data: state.data.concat(action.payload)
+      }
+
+    case COMMENTS_UPDATE: 
+        return {
+          ...state,
+          data: [],
+          data: state.data.concat(action.payload)
+        }  
+
+    case COMMENT_EMPTY:
+        return {
+          ...state,
+          data: []
+        }
+
     default:
       return state
   }
@@ -57,4 +102,4 @@ const authReducer = (state, action) => {
   }
 }
 
-export { postReducer, authReducer }
+export { postReducer, commentReducer, singlePostReducer, authReducer }

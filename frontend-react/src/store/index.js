@@ -1,5 +1,5 @@
 import { createContext, useReducer } from "react";
-import { postReducer, authReducer } from "./reducer";
+import { postReducer, commentReducer, singlePostReducer, authReducer } from "./reducer";
 import combineReducers from "react-combine-reducers"
 
 const initialPosts = {
@@ -11,8 +11,23 @@ const initialAuth = {
   user: null
 }
 
+const initialSPost = {
+  userName: null,
+  postID: null,
+  postTitle: null,
+  content: null,
+  category: null,
+  creationDate: null
+}
+
+const initalComments = {
+  data: []
+}
+
 const [combinedReducer, initialState] = combineReducers({
   posts: [postReducer, initialPosts],
+  post: [singlePostReducer, initialSPost],
+  comments: [commentReducer, initalComments],
   auth: [authReducer, initialAuth]
 })
 
