@@ -26,7 +26,7 @@ function App() {
                   <Route exact path="/register" component={RegistrationPage} />
                   <Route exact path="/profile" component={ProfilePage} />
                   <Route exact path="/createpost" component={CreatePostPage} />
-                  <Route exact path="/updatepost" component={UpdatePostPage} />
+                  <Route path="/updatepost" component={UpdatePostPage} />
                   <Route exact path="/social" component={SocialPosts} />
                   <Route exact path="/gaming" component={GamingPosts} />
                   <Route path="/post" component={DetailedPostPage} />
