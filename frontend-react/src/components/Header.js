@@ -29,10 +29,10 @@ function Header() {
                         Sub:
                     </Menu.Item>
                     <Menu.Item key="5">
-                        Social
+                        <Link to="/social">Social</Link>
                     </Menu.Item>
                     <Menu.Item key="6">
-                        Gaming
+                    <Link to="/gaming">Gaming</Link>
                     </Menu.Item>
                 </Menu>  
             )

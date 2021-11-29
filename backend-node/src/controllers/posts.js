@@ -50,7 +50,6 @@ exports.updatePost = async (req, res) => {
   const { content } = req.body;
   const post = await Post.findOne({postID: postID})
   if (!post) res.status(404).send("That post doesnt exist!")
-
   post.content = content;
   const savedItem = post.save()
   res.status(200).send("Post updated!")
