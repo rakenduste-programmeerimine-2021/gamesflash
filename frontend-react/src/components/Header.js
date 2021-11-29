@@ -46,13 +46,16 @@ function Header() {
                     <Menu.Item key="3" icon={<DesktopOutlined />}>
                         <Link to="/register">Register</Link>
                     </Menu.Item>
-                    <Menu.Item key="4" style={{ pointerEvents: 'none' }}>
+                    <Menu.Item key="4">
+                    <Link to="/createpost">Create new post</Link>
+                    </Menu.Item>
+                    <Menu.Item key="5" style={{ pointerEvents: 'none' }}>
                         Sub:
                     </Menu.Item>
-                    <Menu.Item key="5">
+                    <Menu.Item key="6">
                         <Link to="/social">Social</Link>
                     </Menu.Item>
-                    <Menu.Item key="6">
+                    <Menu.Item key="7">
                     <Link to="/gaming">Gaming</Link>
                     </Menu.Item>
                 </Menu>

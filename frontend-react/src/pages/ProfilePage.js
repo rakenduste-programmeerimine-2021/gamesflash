@@ -12,7 +12,7 @@ import { Context } from "../store";
 function ProfilePage() {
     const { Header, Content, Footer, Sider } = Layout;
     const [state, dispatch] = useContext(Context);
-    const date = new Date(state.auth.creationDate).toUTCString();
+    const date = new Date(state.auth.creationDate).toLocaleString();
 
     return (
             <Layout className="site-layout">
