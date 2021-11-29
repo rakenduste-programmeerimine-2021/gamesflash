@@ -52,7 +52,6 @@ function RegistrationPage() {
                     body: JSON.stringify(userData),
                     headers: {"Content-Type":"application/json"}
                 }).then(response => {
-                  console.log(response);
                     if(response.ok){
                       let success = "Account successfully created!";
                       onSuccess(success);

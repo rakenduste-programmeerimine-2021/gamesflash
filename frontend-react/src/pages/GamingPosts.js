@@ -1,7 +1,28 @@
-import { Table, Tag, Space, Layout, Search, Input } from 'antd';
-import React from "react";
+import { Table, Tag, Space, Layout, Search, Input, message } from 'antd';
+import React, { useEffect, useContext } from "react";
+import { Context } from '../store';
+import { addPost, emptyPost } from '../store/actions';
 
 function GamingPosts() {
+  const [state, dispatch] = useContext(Context);
+
+  useEffect(() => {
+    fetch("http://localhost:8081/api/post/gaming", {
+        method: "GET"
+    }).then(response => {
+        if(response.ok){
+          return response.json();
+        } else {
+          throw new Error("Error getting gaming posts!");
+        }
+    }).then(data => {
+        dispatch(emptyPost());
+        dispatch(addPost(data));
+    }).catch((error) => {
+        showError(error);
+    })
+  }, [])
+
     const columns = [
         {
           title: 'Title',
@@ -56,6 +77,10 @@ function GamingPosts() {
       const handleSearch = (event) => {
         setSearch(event.target.value);
         console.log(event.target.value);
+      };
+
+      const showError = (error) =>{
+        message.error(error.toString());
       };
       
 
