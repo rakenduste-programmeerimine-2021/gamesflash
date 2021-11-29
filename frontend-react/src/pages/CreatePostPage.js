@@ -1,8 +1,58 @@
-import { Form, Input, InputNumber, Button, Layout, Select, Radio } from 'antd';
+import { Form, Input, InputNumber, Button, Layout, Select, Radio, message } from 'antd';
+import { useContext } from "react";
+import { Context } from "../store";
 import React from 'react';
 import "../components/App.css";
 
 function CreatePostPage() {
+    const [state, dispatch] = useContext(Context);
+
+    const onFinish = (values) => {
+        var cat;
+        if(value == 1) {
+            cat = "social"
+        } else {
+            cat = "gaming"
+        }
+        if(state.auth.userName == null || state.auth.userName == undefined ){
+            message.error("You need to be logged in to create a post!");
+        } else {
+            const newPost = {
+                userName: state.auth.userName,
+                postID: Date.now(),
+                postTitle: values.title,
+                content: values.content,
+                category: cat
+            };
+        
+            fetch("http://localhost:8081/api/post/create", {
+                method: "POST",
+                body: JSON.stringify(newPost),
+                headers: {"Content-Type":"application/json"}
+            }).then(response => {
+                if(response.ok){
+                    let success = "Post successfully created!";
+                    onSuccess(success);
+                } else {
+                    throw new Error("Failed to create post!");
+                }
+            }).catch((error) => {
+                showError(error);
+            });
+        };
+        
+    };
+
+    const showError = (error) => {
+        message.error(error.toString());
+    };
+
+    const onSuccess = (success) =>{
+        message.success(success.toString());
+        setTimeout(() => { window.location.reload(); }, 1000);
+        
+    };
+
     const layout = {
         labelCol: {
         span: 8,
@@ -27,9 +77,10 @@ function CreatePostPage() {
         setValue(e.target.value);
     };
 
+
     return (
         <Layout style={{ display: "flex", justifyContent: "center", alignItems: "center", minHeight: '100vh', minWidth: "100vw" }}>
-            <Form {...layout} name="nest-messages" validateMessages={validateMessages}>
+            <Form {...layout} name="nest-messages" validateMessages={validateMessages} onFinish={onFinish}>
                 <Form.Item
                     name={['post', 'title']}
                     label="Post title"
