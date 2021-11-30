@@ -70,6 +70,8 @@ function RegistrationPage() {
 
         const onSuccess = (success) =>{
             message.success(success.toString());
+            //setTimeout tuli stackoverflowist
+            //https://stackoverflow.com/questions/1190642/how-can-i-pass-a-parameter-to-a-settimeout-callback
             setTimeout(() => { window.location.reload(); }, 1000);
             
         };
