@@ -3,10 +3,12 @@ import { useContext } from "react";
 import { Context } from "../store";
 import { loginUser } from "../store/actions";
 import React from 'react';
+import { Link } from 'react-router-dom';
 import '../components/App.css'
 
 function AuthPage() {
   const [state, dispatch] = useContext(Context);
+  var linkToMain = "http://localhost:3000/"
 
     const onFinish = (values) => {
       const userData = {   
@@ -28,6 +30,9 @@ function AuthPage() {
             }
         }).then(data => {
             dispatch(loginUser(data))
+            //kui kasutame järgnevat, siis:
+            //saadud stack overflowist! https://stackoverflow.com/questions/57101831/react-router-how-do-i-update-the-url-without-causing-a-navigation-reload
+            //setTimeout(() => { window.history.replaceState(null, "profile", "/profile"); }, 1000);
         }).catch((error) => {
             showError(error);
         })
@@ -46,8 +51,8 @@ function AuthPage() {
   const onFinishFailed = (errorInfo) => {
     console.log('Failed:', errorInfo);
   };
-
-  return (
+  if(state.auth.userName == null || state.auth.userName == undefined){
+    return (
     <Layout style={{ display: "flex", justifyContent: "center", alignItems: "center", minHeight: '100vh', minWidth: "100vw" }}>
       <Form
         name="basic"
@@ -84,6 +89,14 @@ function AuthPage() {
       </Form>
     </Layout>
   );
+  } else {
+    return (
+      <Layout>
+        <p>You are logged in!</p>
+      </Layout>
+    )
+  }
+  
 }
 
 export default AuthPage;

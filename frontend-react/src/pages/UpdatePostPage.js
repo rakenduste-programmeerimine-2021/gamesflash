@@ -1,39 +1,81 @@
 import { Form, Input, InputNumber, Button, Layout, Select, Radio, message } from 'antd';
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { Context } from '../store';
+import { addSinglePost } from '../store/actions';
 import "../components/App.css";
 
 function UpdatePostPage() {
     const [state, dispatch] = useContext(Context);
     var link="http://localhost:3000/post/";
+    var linkToMain="http://localhost:3000/"
     var linkToRem ='http://localhost:3000/updatepost/'
     var wl = String(window.location.href);
+    //see .replace() tuli stackoverflowist, sest otsisin kuidas olemasolevast stringist kindlaid andmeid kustutada!
+    var postIDraw = wl.replace(linkToRem, '');
+    var postID = parseInt(postIDraw);
 
-    const onFinish = (values) => {
-
-        var postIDraw = wl.replace(linkToRem, '');
-        var postID = parseInt(postIDraw);
-        console.log("olen post id "+postID)
-        console.log("olen values")
-        console.log(values.post.content)
-        const newData = {
-            content: values.post.content
-        };
-
-        fetch("http://localhost:8081/api/post/edit/"+postID, {
-            method: "PUT",
-            body: JSON.stringify(newData),
-            headers: {"Content-Type":"application/json"}
+    useEffect(() => {
+        console.log("olen postid " + postID)
+        fetch("http://localhost:8081/api/post/post/"+postID, {
+            method: "GET"
         }).then(response => {
-          console.log(response);
             if(response.ok){
-              window.location = link + postID;
+              return response.json();
             } else {
-              throw new Error("Couldn't edit this post!");
+              throw new Error("This post does not exist!");
             }
+        }).then(data => {
+            dispatch(addSinglePost(data));
         }).catch((error) => {
             showError(error);
         })
+      }, [])
+
+    const onFinish = (values) => {
+
+        
+        const newData = {
+            content: values.post.content
+        };
+        if(state.post.userName == state.auth.userName){
+            fetch("http://localhost:8081/api/post/edit/"+postID, {
+                method: "PUT",
+                body: JSON.stringify(newData),
+                headers: {"Content-Type":"application/json"}
+            }).then(response => {
+            console.log(response);
+                if(response.ok){
+                window.location = link + postID;
+                } else {
+                throw new Error("Couldn't edit this post!");
+                }
+            }).catch((error) => {
+                showError(error);
+            })
+        } else {
+            message.error("You are not the owner of this post!")
+        }
+    };
+
+    const deletePost = () => {
+        if(state.auth.userName == state.post.userName){
+            fetch("http://localhost:8081/api/post/delete/"+postID, {
+                method: "DELETE",
+            }).then(response => {
+            console.log(response);
+                if(response.ok){
+                    message.success("Post successfully deleted!")
+                    setTimeout(() => { window.location=linkToMain; }, 2000);
+                } else {
+                throw new Error("Couldn't delete this post!");
+                }
+            }).catch((error) => {
+                showError(error);
+                
+            })
+        } else {
+            message.error("You are not the owner of this post!");
+        }
     }
 
     const showError = (error) => {
@@ -73,11 +115,12 @@ function UpdatePostPage() {
                     <Button type="primary" htmlType="submit">
                         Update post
                     </Button>
-                    <Button type="primary" danger style={{ marginLeft: 5 }}>
-                        Delete post
-                    </Button>
+                    
                 </Form.Item>
             </Form>
+                <Button type="primary" danger style={{ marginLeft: 0 }} onClick={() => deletePost()}>
+                    Delete post
+                </Button>
         </Layout>
     );
 
