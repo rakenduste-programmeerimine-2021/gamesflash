@@ -25,6 +25,9 @@ function Header() {
                     <Menu.Item key="2" icon={<DesktopOutlined />}>
                         <Link to="/profile">Your profile</Link>
                     </Menu.Item>
+                    <Menu.Item key="3">
+                    <Link to="/createpost">Create new post</Link>
+                    </Menu.Item>
                     <Menu.Item key="4" style={{ pointerEvents: 'none' }}>
                         Sub:
                     </Menu.Item>

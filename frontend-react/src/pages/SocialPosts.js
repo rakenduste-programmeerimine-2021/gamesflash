@@ -2,6 +2,7 @@ import { Table, Tag, Space, Layout, Search, Input, message } from 'antd';
 import React, { useEffect, useContext } from "react";
 import { Context } from '../store';
 import { addPost, emptyPost } from '../store/actions';
+import { Link } from 'react-router-dom';
 
 function SocialPosts() {
   const [state, dispatch] = useContext(Context);
@@ -30,6 +31,21 @@ function SocialPosts() {
 
   */
 
+  let rows;   
+  if(state.posts.data !== undefined){     
+    const iteratedData = state.posts.data.map(row => ({       
+      title: row.postTitle,
+      postid: row.postID,
+      user: row.userName,       
+      date: row.creationDate,        
+    }))        
+      rows = [       
+        ...iteratedData     
+      ];   
+    } else {     
+      rows = []   
+    };
+
   const showError = (error) =>{
     message.error(error.toString());
   };
@@ -42,6 +58,11 @@ function SocialPosts() {
           render: text => <a>{text}</a>,
         },
         {
+          title: 'Post ID',
+          dataIndex: 'postid',
+          key: 'postid',
+        },
+        {
           title: 'User',
           dataIndex: 'user',
           key: 'user',
@@ -49,7 +70,7 @@ function SocialPosts() {
         {
           title: 'Date',
           dataIndex: 'date',
-          key: 'age',
+          key: 'date',
           defaultSortOrder: 'descend',
           sorter: (a, b) => new Date(a.date) - new Date(b.date),
         },
@@ -57,10 +78,11 @@ function SocialPosts() {
       
       const data = [
         {
-            key: '1',
-            title: 'Whats up? I recently discovered this awesome game called Raid: Shadow Legends and I think some of you might be interested!',
-            user: 'Oliver',
-            date: new Date("1970").toLocaleString(),
+          key: state.posts.data.postID,
+          title: state.posts.data.postTitle,
+          postid: state.posts.data.postID,
+          user: state.posts.data.userName,
+          date: new Date(state.posts.data.creationDate).toLocaleString(),
         },
         {
           key: '2',
@@ -96,10 +118,18 @@ return(
         <h1 className="postCategoryLabel">SOCIAL</h1>
         <Search placeholder="Search a post..." onChange={handleSearch} style={{ width: 250, paddingBottom: 5 }} />
         <Table dataSource={
-          data.filter((json) =>
+          /*data.filter((json) =>
             json.title.toLowerCase().includes(search.toLowerCase())
-          )
-        } columns={columns} size="middle" />
+          )*/
+          rows
+        } columns={columns} size="middle" onRow={(record, rowIndex) => {
+          return {
+            onClick: event => {
+              console.log("Tabeli onclick töötab!");
+              <Link to="localhost:3000/post/:postid" />
+            }, // click row
+          };
+        }} />
     </Layout>
     );
 }

@@ -1,12 +1,18 @@
 import { Card, Comment, Tooltip, List, Layout, Form, Button, Input, message } from 'antd';
-import { addComment, addSinglePost } from '../store/actions';
+import { addComment, addSinglePost, emptyComment } from '../store/actions';
 import { useContext, useState, useEffect } from "react";
 import { Context } from "../store";
+import UpdatePostPage from './UpdatePostPage';
+import { Link } from 'react-router-dom';
 
 function DetailedPostPage() {
   const [state, dispatch] = useContext(Context);
   const [commentInput, setCommentInput] = useState("");
-  var postID = 332211112233;
+  var linkToRem ='http://localhost:3000/post/'
+  var wl = String(window.location.href);
+  //see .replace() tuli stackoverflowist, sest otsisin kuidas olemasolevast stringist kindlaid andmeid kustutada!
+  var postIDraw = wl.replace(linkToRem, '');
+  var postID = parseInt(postIDraw);
   
   useEffect(() => {
     console.log("olen postid " + postID)
@@ -37,6 +43,7 @@ function DetailedPostPage() {
           throw new Error("Error getting comments!");
         }
     }).then(data => {
+        dispatch(emptyComment());
         dispatch(addComment(data));
     }).catch((error) => {
         showError(error);
@@ -79,14 +86,14 @@ function DetailedPostPage() {
         }).catch((error) => {
             showError(error);
         })
-
-    //dispatch(addComment(newComment));
-    console.log("PEALE FETCHI");
+        console.log("PEALE FETCHI");
+        //dispatch(addComment(newComment));
   }
 
   let rows;   
   if(state.comments.data !== undefined){     
     const iteratedData = state.comments.data.map(row => ({       
+      postid: row.postID,
       author: row.userName,       
       content: row.commentContent,       
       datetime: row.commentDate,        
@@ -102,6 +109,7 @@ function DetailedPostPage() {
 
   const data = [
     {
+      postid: state.comments.data.postID,
       author: state.comments.data.userName,
       content: (
         <p>
@@ -170,6 +178,10 @@ function DetailedPostPage() {
             <Card title={state.post.postTitle} style={{ width: 300 }}>
         <p>{state.post.content}</p>
         </Card>
+
+        <Button type="primary" style={{ width: 300, marginTop: 10 }}>
+          <Link to={"/updatepost/" + postID}>Update post</Link>
+        </Button>
 
         <List
         className="comment-list"
