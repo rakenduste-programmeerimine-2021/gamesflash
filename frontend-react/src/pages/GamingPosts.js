@@ -103,23 +103,8 @@ function GamingPosts() {
           rows.filter((json) =>
             json.title.toLowerCase().includes(search.toLowerCase())
           )
-          /*{rows: state.posts.data.filter((postTitle) =>
-            postTitle.title.toLowerCase().includes(search.toLowerCase())
-          )}*/
-          /*setTimeout(() => {data.filter((json) =>
-            json.title.toLowerCase().includes(search.toLowerCase())
-          )}, 4000)*/
-          
           //rows
-        } columns={columns} size="middle" onRow={(record, rowIndex) => {
-          return {
-            onClick: event => {
-              console.log("Tabeli onclick töötab!");
-              //<Link to="localhost:3000/post/:postid" />
-            }, // click row
-          };
-        }} />
-        
+        } columns={columns} size="middle" />
     </Layout>
   );
 }
