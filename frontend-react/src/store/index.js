@@ -8,7 +8,6 @@ const initialPosts = {
 
 const initialAuth = {
   token: null,
-  user: null
 }
 
 const initialSPost = {

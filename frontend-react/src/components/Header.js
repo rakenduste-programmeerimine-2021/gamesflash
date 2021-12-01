@@ -18,7 +18,19 @@ function Header() {
     function logout() {
         dispatch(logoutUser());
     }
-    function loggedIn() {
+
+    function isAdmin(){
+        if(state.auth.aCC == 873333){
+            return(
+                <Menu.Item key="7" icon={<DesktopOutlined />}>
+                    <Link to="/adminpage">Admin view</Link>
+                </Menu.Item>
+            )
+            
+        }
+    }
+
+    function loggedIn(){
         if(state.auth.token != undefined && state.auth.token != null){
             return (
                 <Menu theme="dark" defaultSelectedKeys={['1']} mode="inline">
@@ -35,8 +47,9 @@ function Header() {
                         <Link to="/social">Social</Link>
                     </Menu.Item>
                     <Menu.Item key="6">
-                    <Link to="/gaming">Gaming</Link>
+                        <Link to="/gaming">Gaming</Link>
                     </Menu.Item>
+                    {isAdmin()}
                 </Menu>  
             )
             

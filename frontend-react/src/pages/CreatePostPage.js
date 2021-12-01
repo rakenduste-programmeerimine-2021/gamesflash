@@ -1,11 +1,13 @@
 import { Form, Input, InputNumber, Button, Layout, Select, Radio, message } from 'antd';
 import { useContext } from "react";
 import { Context } from "../store";
+import { Link } from 'react-router-dom';
 import React from 'react';
 import "../components/App.css";
 
 function CreatePostPage() {
     const [state, dispatch] = useContext(Context);
+    var cpostID;
 
     const onFinish = (values) => {
         var cat;
@@ -14,42 +16,58 @@ function CreatePostPage() {
         } else {
             cat = "gaming"
         }
+        console.log("esimene!")
         if(state.auth.userName == null || state.auth.userName == undefined ){
             message.error("You need to be logged in to create a post!");
-        } else {
+        } else {        
+            console.log("hakkan väärtusi andma")
+            cpostID = Date.now()
             const newPost = {
                 userName: state.auth.userName,
-                postID: Date.now(),
+                postID: cpostID,
                 postTitle: values.title,
                 content: values.content,
                 category: cat
             };
+            console.log("antud!")
+          postFetch(newPost);
+
+            
         
-            fetch("http://localhost:8081/api/post/create", {
-                method: "POST",
-                body: JSON.stringify(newPost),
-                headers: {"Content-Type":"application/json"}
-            }).then(response => {
-                if(response.ok){
-                    let success = "Post successfully created!";
-                    onSuccess(success);
-                } else {
-                    throw new Error("Failed to create post!");
-                }
-            }).catch((error) => {
-                showError(error);
-            });
         };
         
     };
+
+    const postFetch = (newPost) => {
+        return (
+        fetch("http://localhost:8081/api/post/create", {
+            method: "POST",
+            body: JSON.stringify(newPost),
+            headers: {"Content-Type":"application/json", "Access-Control-Expose-Headers":"Authorization"}
+        }).then(response => {
+            if(response.ok){
+                let success = "Post successfully created!";
+                onSuccess(success);
+            } else {
+                throw new Error("Failed to create post!");
+            }
+        }).catch((error) => {
+            showError(error);
+        })
+        );
+    }
 
     const showError = (error) => {
         message.error(error.toString());
     };
 
     const onSuccess = (success) =>{
+        console.log("success gang")
         message.success(success.toString());
-        setTimeout(() => { window.location.reload(); }, 1000);
+        return (
+            <Link to= {"/post/"+cpostID} />
+        )
+        //setTimeout(() => { window.location.reload(); }, 1000);
         
     };
 

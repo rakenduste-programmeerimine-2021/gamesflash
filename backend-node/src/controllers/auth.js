@@ -11,7 +11,7 @@ exports.login = async (req, res) => {
 
     
     const isMatch = await bcrypt.compare(password, user.password)
-    if (!isMatch) throw Error("I should not say that the password does not match")
+    if (!isMatch) throw Error("Invalid credentials!")
 
     const userTemplate = {
       id: user.id,
@@ -35,7 +35,7 @@ exports.login = async (req, res) => {
 }
 
 exports.signup = async (req, res) => {
-  const { userName, email, password } = req.body
+  const { userName, email, password, aCC } = req.body
 
   try {
     const user = await User.findOne({ userName })
@@ -50,7 +50,8 @@ exports.signup = async (req, res) => {
     const newUser = new User({
       userName,
       email,
-      password: hash
+      password: hash,
+      aCC
     })
 
     const savedUser = await newUser.save()
@@ -64,7 +65,7 @@ exports.signup = async (req, res) => {
 
 exports.deleteUser = async (req, res) => {
   const { userName, aCC } = req.body;
-  if(aCC == 873333 % 3 == 0 && aCC > 873332 && aCC < 873995) {
+  if(aCC == 873333) {
     const user = await User.findOneAndDelete({ userName: userName })
     if (!user) res.status(404).send("User with that nickname does not exist")
     res.status(200).send(`Successfully deleted the following user: ${user.userName}`)
@@ -72,4 +73,11 @@ exports.deleteUser = async (req, res) => {
     res.status(200).send(`Access denied`)
   }
   
+}
+
+exports.getAdmins = async (req, res) => {
+  const aCC = 873333;
+  const admins = await User.find({ acc: aCC })
+  if(!admins) res.status(404).send("No admins found!")
+  res.status(200).send(admins);
 }
