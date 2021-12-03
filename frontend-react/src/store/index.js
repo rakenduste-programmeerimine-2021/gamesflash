@@ -8,7 +8,19 @@ const initialPosts = {
 
 const initialAuth = {
   token: null,
-  user: null
+}
+
+const initialSPost = {
+  userName: null,
+  postID: null,
+  postTitle: null,
+  content: null,
+  category: null,
+  creationDate: null
+}
+
+const initalComments = {
+  data: []
 }
 
 const initialSPost = {

@@ -5,7 +5,7 @@ const userSchema = new Schema({
   email: { type: String, required: true, unique: true },
   password: { type: String, required: true },
   creationDate: { type: Date, default: Date.now },
-  aCC: { type: Number },
+  aCC: { type: Number, default: 0, required: true },
   postCount: { type: Number, default: 0},
   commentCount: { type: Number, default: 0}
 });

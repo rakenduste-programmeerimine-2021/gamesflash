@@ -18,12 +18,27 @@ function Header() {
     function logout() {
         dispatch(logoutUser());
     }
-    function loggedIn() {
+
+    function isAdmin(){
+        if(state.auth.aCC == 873333){
+            return(
+                <Menu.Item key="7" icon={<DesktopOutlined />}>
+                    <Link to="/adminpage">Admin view</Link>
+                </Menu.Item>
+            )
+            
+        }
+    }
+
+    function loggedIn(){
         if(state.auth.token != undefined && state.auth.token != null){
             return (
                 <Menu theme="dark" defaultSelectedKeys={['1']} mode="inline">
                     <Menu.Item key="2" icon={<DesktopOutlined />}>
                         <Link to="/profile">Your profile</Link>
+                    </Menu.Item>
+                    <Menu.Item key="3">
+                    <Link to="/createpost">Create new post</Link>
                     </Menu.Item>
                     <Menu.Item key="4" style={{ pointerEvents: 'none' }}>
                         Sub:
@@ -32,8 +47,9 @@ function Header() {
                         <Link to="/social">Social</Link>
                     </Menu.Item>
                     <Menu.Item key="6">
-                    <Link to="/gaming">Gaming</Link>
+                        <Link to="/gaming">Gaming</Link>
                     </Menu.Item>
+                    {isAdmin()}
                 </Menu>  
             )
             
@@ -46,13 +62,16 @@ function Header() {
                     <Menu.Item key="3" icon={<DesktopOutlined />}>
                         <Link to="/register">Register</Link>
                     </Menu.Item>
-                    <Menu.Item key="4" style={{ pointerEvents: 'none' }}>
+                    <Menu.Item key="4">
+                    <Link to="/createpost">Create new post</Link>
+                    </Menu.Item>
+                    <Menu.Item key="5" style={{ pointerEvents: 'none' }}>
                         Sub:
                     </Menu.Item>
-                    <Menu.Item key="5">
+                    <Menu.Item key="6">
                         <Link to="/social">Social</Link>
                     </Menu.Item>
-                    <Menu.Item key="6">
+                    <Menu.Item key="7">
                     <Link to="/gaming">Gaming</Link>
                     </Menu.Item>
                 </Menu>

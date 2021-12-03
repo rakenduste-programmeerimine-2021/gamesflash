@@ -1,10 +1,13 @@
-import { Table, Tag, Space, Layout, Search, Input, message } from 'antd';
+import { Table, Tag, Space, Layout, Input, message, } from 'antd';
 import React, { useEffect, useContext } from "react";
 import { Context } from '../store';
 import { addPost, emptyPost } from '../store/actions';
+import { BrowserRouter, Link, Route, useHistory } from 'react-router-dom';
+
 
 function GamingPosts() {
   const [state, dispatch] = useContext(Context);
+  const [search, setSearch] = React.useState("");
 
   useEffect(() => {
     fetch("http://localhost:8081/api/post/gaming", {
@@ -23,12 +26,36 @@ function GamingPosts() {
     })
   }, [])
 
+  const showError = (error) =>{
+    message.error(error.toString());
+  };
+
+  let rows;   
+  if(state.posts.data !== undefined){     
+    const iteratedData = state.posts.data.map(row => ({       
+      title: row.postTitle,
+      postid: row.postID,
+      user: row.userName,       
+      date: Date(row.creationDate).toLocaleString(),        
+    }))        
+      rows = [       
+        ...iteratedData     
+      ];   
+    } else {     
+      rows = []   
+    };
+
     const columns = [
         {
           title: 'Title',
           dataIndex: 'title',
           key: 'title',
-          render: text => <a>{text}</a>,
+          render: (text, row) => <Link to={"/post/" + row.postid}>{text}</Link>,
+        },
+        {
+          title: 'Post ID',
+          dataIndex: 'postid',
+          key: 'postid',
         },
         {
           title: 'User',
@@ -44,54 +71,39 @@ function GamingPosts() {
         },
       ];
       
+      console.log(state);
+
       const data = [
         {
-            key: '1',
-            title: 'Whats up? I recently discovered this awesome game called Raid: Shadow Legends and I think some of you might be interested!',
-            user: 'Oliver',
-            date: new Date("1970").toLocaleString(),
-        },
-        {
-          key: '2',
-          title: 'Hey how can I install Minecraft mods on version 1.16.2? I have tried everything but it cant seem to work',
-          user: 'Enri',
-          date: new Date("1999").toLocaleString(),
-        },
-        {
-          key: '3',
-          title: 'WOW! CS:GO is such a fun time! I dont remember the last time I was so dissapointed in a game!!',
-          user: 'Ander',
-          date: new Date("2020").toLocaleString(),
-        },
-        {
-          key: '4',
-          title: 'Yesterday I won a game of Dota and got rankup, 10/10 very nice',
-          user: 'Andy',
-          date: new Date("2021").toLocaleString(),
+            key: toString(state.posts.data.postID),
+            title: toString(state.posts.data.postTitle),
+            postid: toString(state.posts.data.postID),
+            user: toString(state.posts.data.userName),
+            date: toString(state.posts.data.creationDate),
         },
       ];
 
       const { Search } = Input;
       
-      const [search, setSearch] = React.useState("");
       const handleSearch = (event) => {
         setSearch(event.target.value);
         console.log(event.target.value);
+        
       };
 
-      const showError = (error) =>{
-        message.error(error.toString());
-      };
-      
+      console.log(data);
+      console.log(state);
+    
 
   return(
     <Layout>
         <h1 className="postCategoryLabel">GAMING</h1>
         <Search placeholder="Search a post..." onChange={handleSearch} style={{ width: 250, paddingBottom: 5 }} />
         <Table dataSource={
-          data.filter((json) =>
+          rows.filter((json) =>
             json.title.toLowerCase().includes(search.toLowerCase())
           )
+          //rows
         } columns={columns} size="middle" />
     </Layout>
   );

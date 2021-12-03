@@ -37,7 +37,7 @@ const singlePostReducer = (state, action) => {
       return {
         ...state,
         
-        userName: action.payload[0].userName,//action.payload.userName,
+        userName: action.payload[0].userName,
         postID: action.payload[0].postID,
         postTitle: action.payload[0].postTitle,
         content: action.payload[0].content,
@@ -84,6 +84,7 @@ const authReducer = (state, action) => {
         email: action.payload.email,
         userName: action.payload.userName,
         creationDate: action.payload.creationDate,
+        aCC: action.payload.aCC,
         postCount: action.payload.postCount,
         commentCount: action.payload.commentCount
       }

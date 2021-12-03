@@ -48,7 +48,7 @@ router.post(
 );
 
 router.post(
-  "/delete/",
+  "/delete",
   [
     check("userName")
       .trim()
@@ -58,5 +58,7 @@ router.post(
   validationMiddleware,
   authController.deleteUser
 );
+
+router.get("/admins", authController.getAdmins);
 
 module.exports = router;

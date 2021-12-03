@@ -11,6 +11,7 @@ import UpdatePostPage from "./pages/UpdatePostPage";
 import SocialPosts from "./pages/SocialPosts";
 import GamingPosts from "./pages/GamingPosts";
 import DetailedPostPage from "./pages/DetailedPostPage";
+import AdminPage from "./pages/AdminPage";
 
 function App() {
   const { Content, Footer } = Layout;
@@ -30,6 +31,7 @@ function App() {
                   <Route exact path="/social" component={SocialPosts} />
                   <Route exact path="/gaming" component={GamingPosts} />
                   <Route path="/post" component={DetailedPostPage} />
+                  <Route exact path="/adminpage" component={AdminPage} />
                 </Switch>
               </Content>
           </div>
