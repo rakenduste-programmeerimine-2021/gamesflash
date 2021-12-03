@@ -23,6 +23,19 @@ const initalComments = {
   data: []
 }
 
+const initialSPost = {
+  userName: null,
+  postID: null,
+  postTitle: null,
+  content: null,
+  category: null,
+  creationDate: null
+}
+
+const initalComments = {
+  data: []
+}
+
 const [combinedReducer, initialState] = combineReducers({
   posts: [postReducer, initialPosts],
   post: [singlePostReducer, initialSPost],

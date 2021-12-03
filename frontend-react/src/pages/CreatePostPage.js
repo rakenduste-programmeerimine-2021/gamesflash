@@ -53,7 +53,6 @@ function CreatePostPage() {
         })
         );
     }
-
     const showError = (error) => {
         message.error(error.toString());
     };
