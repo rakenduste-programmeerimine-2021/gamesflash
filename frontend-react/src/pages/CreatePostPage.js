@@ -30,10 +30,7 @@ function CreatePostPage() {
                 category: cat
             };
             console.log("antud!")
-          postFetch(newPost);
-
-            
-        
+            postFetch(newPost);
         };
         
     };
@@ -100,7 +97,7 @@ function CreatePostPage() {
         <Layout style={{ display: "flex", justifyContent: "center", alignItems: "center", minHeight: '100vh', minWidth: "100vw" }}>
             <Form {...layout} name="nest-messages" validateMessages={validateMessages} onFinish={onFinish}>
                 <Form.Item
-                    name={['post', 'title']}
+                    name='title'
                     label="Post title"
                     rules={[
                         {
@@ -117,7 +114,7 @@ function CreatePostPage() {
                     <Radio value={2}>Gaming</Radio>
                 </Radio.Group>
 
-                <Form.Item name={['post', 'content']} label="Post content">
+                <Form.Item name='content' label="Post content">
                     <Input.TextArea style={{ width: 500, height: 200 }} />
                 </Form.Item>
 
