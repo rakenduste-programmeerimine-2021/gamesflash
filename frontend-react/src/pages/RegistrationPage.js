@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React from 'react';
 import { Context } from "../store";
 import {
     Form,
@@ -11,7 +11,6 @@ import {
 import '../components/App.css';
 
 function RegistrationPage() {
-    const [state, dispatch] = useContext(Context);
     const { Option } = Select;
     
     const formItemLayout = {
@@ -86,6 +85,7 @@ function RegistrationPage() {
                     scrollToFirstError
                 >
                     <Form.Item
+                    data-testid="username"
                         name="userName"
                         label="Username"
                         rules={[
@@ -104,6 +104,7 @@ function RegistrationPage() {
                     </Form.Item>
 
                     <Form.Item
+                        data-testid="email"
                         name="email"
                         label="E-mail"
                         rules={[
@@ -121,6 +122,7 @@ function RegistrationPage() {
                     </Form.Item>
                 
                     <Form.Item
+                    data-testid="password"
                         name="password"
                         label="Password"
                         rules={[
@@ -136,6 +138,7 @@ function RegistrationPage() {
                     </Form.Item>
                 
                     <Form.Item
+                    data-testid="confrim_password"
                         name="confirm"
                         label="Confirm Password"
                         dependencies={['password']}

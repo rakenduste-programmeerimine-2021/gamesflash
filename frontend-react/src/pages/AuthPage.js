@@ -1,14 +1,13 @@
 import { Form, Input, Button, message, Layout } from 'antd';
-import { useContext } from "react";
 import { Context } from "../store";
 import { loginUser } from "../store/actions";
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import '../components/App.css'
 
 function AuthPage() {
   const [state, dispatch] = useContext(Context);
-  var linkToMain = "http://localhost:3000/"
+  var linkToMain = "http://localhost:3000/";
 
     const onFinish = (values) => {
       const userData = {   
@@ -66,6 +65,7 @@ function AuthPage() {
         //style={{ display: "flex", justifyContent: "center", alignItems: "center"}}
       >
         <Form.Item
+          data-testid="username"
           label="Username"
           name="userName"
           rules={[{ required: true, message: 'Please input your username!' }]}
@@ -74,6 +74,7 @@ function AuthPage() {
         </Form.Item>
 
         <Form.Item
+          data-testid="password"
           label="Password"
           name="password"
           rules={[{ required: true, message: 'Please input your password!' }]}
@@ -81,7 +82,7 @@ function AuthPage() {
           <Input.Password />
         </Form.Item>
 
-        <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
+        <Form.Item wrapperCol={{ offset: 8, span: 16 }} data-testid="loginButton">
           <Button type="primary" htmlType="submit">
             Login!
           </Button>
