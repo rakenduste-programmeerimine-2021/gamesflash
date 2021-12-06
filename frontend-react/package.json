@@ -19,10 +19,7 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject",
-    "pretest": "cross-env NODE_ENV=test npm run migrate:reset",
-    "migrate:reset": "npx sequelize-cli db:migrate:undo:all && npm run migrate",
-    "migrate": "npx sequelize-cli db:migrate && npx sequelize-cli db:seed:all"
+    "eject": "react-scripts eject"
   },
   "eslintConfig": {
     "extends": [
