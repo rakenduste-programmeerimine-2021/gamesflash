@@ -1,14 +1,10 @@
-import React, { useContext, useDebugValue } from "react";
+import react from "react";
 import { render, screen } from "@testing-library/react"
 import AuthPage from "./AuthPage";
 import { Layout } from "antd";
 import { Context } from "../store";
-import { loginUser, USER_LOGIN } from "../store/actions";
 //Contextiga seotud errori fixi saime siit (Also aitäh Annelile!):
 //https://stackoverflow.com/questions/66856814/react-jest-testing-error-object-of-usecontext-not-defined
-
-  //SIDENOTE
-  //Teha pigem isLoggedIn: true/false peale (äkki lahendab selle setting state jama)(?)
 
 
 describe('Logged in users login page', () => {
@@ -19,6 +15,7 @@ describe('Logged in users login page', () => {
             }
         }
         const dispatch = jest.fn()
+        
     it('Checks if username input exists', () => {  
         render((
             <Context.Provider value={[context, dispatch]}>
