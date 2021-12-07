@@ -59,8 +59,10 @@ function UpdatePostPage() {
 
     const deletePost = () => {
         if(state.auth.userName == state.post.userName){
-            fetch("http://localhost:8081/api/post/delete/"+postID, {
-                method: "DELETE",
+            fetch("http://localhost:8081/api/post/delete/", {
+                method: "POST",
+                body: JSON.stringify({ postID: postID, aCC: state.auth.aCC }),
+                headers: {"Content-Type":"application/json"}
             }).then(response => {
             console.log(response);
                 if(response.ok){
