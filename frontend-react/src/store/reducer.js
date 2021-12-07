@@ -1,4 +1,4 @@
-import { POST_ADD, POST_REMOVE, POST_EMPTY, USER_LOGIN, USER_LOGOUT, POSTS_UPDATE, COMMENTS_UPDATE, COMMENT_EMPTY, COMMENT_ADD, SINGLE_POST } from "./actions";
+import { POST_ADD, POST_REMOVE, POST_EMPTY, USER_LOGIN, USER_LOGOUT, USER_ADD, USER_REMOVE, USER_EMPTY, POSTS_UPDATE, COMMENTS_UPDATE, COMMENT_EMPTY, COMMENT_ADD, SINGLE_POST } from "./actions";
 
 const postReducer = (state, action) => {
   switch(action.type){
@@ -103,4 +103,29 @@ const authReducer = (state, action) => {
   }
 }
 
-export { postReducer, commentReducer, singlePostReducer, authReducer }
+const usersReducer = (state, action) => {
+  switch(action.type){
+    case USER_ADD:
+      return {
+        ...state,
+        data: state.data.concat(action.payload)
+      }
+
+    case USER_REMOVE:
+      return {
+        ...state,
+        data: state.data.filter(user => user.userName !== action.payload)
+      }
+
+      case USER_EMPTY:
+      return {
+        ...state,
+        data: []
+      }
+
+    default:
+      return state
+  }
+}
+
+export { postReducer, commentReducer, singlePostReducer, authReducer, usersReducer }

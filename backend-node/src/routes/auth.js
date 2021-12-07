@@ -59,6 +59,8 @@ router.post(
   authController.deleteUser
 );
 
+router.get("/allusers", authController.getAllUsers);
+
 router.get("/admins", authController.getAdmins);
 
 module.exports = router;

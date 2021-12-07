@@ -75,6 +75,13 @@ exports.deleteUser = async (req, res) => {
   
 }
 
+exports.getAllUsers = async (req, res) => {
+  //const { userName } = req.body;
+  const allUsers = await User.find({})
+  if(!allUsers) res.status(404).send("No users found!")
+  res.status(200).send(allUsers);
+}
+
 exports.getAdmins = async (req, res) => {
   const aCC = 873333;
   const admins = await User.find({ acc: aCC })
