@@ -5,7 +5,6 @@ import ProfilePage from "./pages/ProfilePage";
 import { Layout } from "antd";
 import AuthPage from "./pages/AuthPage";
 import './components/App.css';
-import Sider from "antd/lib/layout/Sider";
 import CreatePostPage from "./pages/CreatePostPage";
 import UpdatePostPage from "./pages/UpdatePostPage";
 import SocialPosts from "./pages/SocialPosts";

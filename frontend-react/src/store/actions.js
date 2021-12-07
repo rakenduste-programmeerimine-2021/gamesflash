@@ -2,6 +2,9 @@ export const POST_ADD = "POST_ADD"
 export const POST_REMOVE = "POST_REMOVE"
 export const USER_LOGIN = "USER_LOGIN"
 export const USER_LOGOUT = "USER_LOGOUT"
+export const USER_EMPTY = "USER_EMPTY"
+export const USER_ADD = "USER_ADD"
+export const USER_REMOVE = "USER_REMOVE"
 export const POST_EMPTY = "POST_EMPTY"
 export const POSTS_UPDATE = "POST_UPDATE"
 export const COMMENT_ADD = "COMMENT_ADD"
@@ -54,4 +57,18 @@ export const loginUser = data => ({
 
 export const logoutUser = () => ({
   type: USER_LOGOUT
+})
+
+export const emptyUser = () => ({
+  type: USER_EMPTY
+})
+
+export const addUser = user => ({
+  type: USER_ADD,
+  payload: user
+})
+
+export const removeUser = user => ({
+  type: USER_REMOVE,
+  payload: user
 })
