@@ -3,7 +3,7 @@ import { BrowserRouter } from "react-router-dom";
 import { render, screen } from "@testing-library/react"
 import DetailedPostPage from "./DetailedPostPage"
 import { Layout } from "antd";
-import { Context } from "../store";
+import { Context } from "../store"; 
 
 
 describe('Detailed post page', () => {

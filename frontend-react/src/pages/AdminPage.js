@@ -32,7 +32,6 @@ function AdminPage() {
           throw new Error("Error getting gaming posts!");
         }
     }).then(data => {
-        dispatch(emptyPost());
         dispatch(addPost(data));
     }).catch((error) => {
         showError(error);

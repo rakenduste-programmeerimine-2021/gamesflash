@@ -1,3 +1,39 @@
   /*"pretest": "cross-env NODE_ENV=test npm run migrate:reset",
     "migrate:reset": "npx sequelize-cli db:migrate:undo:all && npm run migrate",
     "migrate": "npx sequelize-cli db:migrate && npx sequelize-cli db:seed:all"*/
+
+    ,
+        post: {
+            'category': 'gaming',
+            'content': 'beep boop',
+            'creationDate': '2021-11-26T14:08:19.134Z',
+            'postID': 332211112233,
+            'postTitle': 'Im a post lol',
+            'userName': 'posttester'
+        },
+        comments: {
+            data: [
+                {
+                    'commentContent': 'YOO THIS IS A WICKED COMMENT',
+                    'commentDate': '2021-11-26T16:01:54.819Z',
+                    'commentID': 123123,
+                    'postID': 3311221133,
+                    'userName': 'usermen'
+                },
+                {
+                    'commentContent': 'YOO THIS IS A SICK COMMENT222212',
+                    'commentDate': '2021-11-26T16:02:43.829Z',
+                    'commentID': 22222,
+                    'postID': 332211112233,
+                    'userName': 'dabber'
+                },
+                {
+                    'commentContent': 'ok',
+                    'commentDate': '2021-11-26T16:02:43.829Z',
+                    'commentID': 22322,
+                    'postID': 1256515632,
+                    'userName': 'dabber'
+                }
+            ]
+            
+        }
