@@ -10,6 +10,7 @@ import {
     TeamOutlined,
     UserOutlined,
 } from '@ant-design/icons';
+import styles from './App.css';
 
 function Header() {
     const [state, dispatch] = useContext(Context);
@@ -33,8 +34,8 @@ function Header() {
     function loggedIn(){
         if(state.auth.token != undefined && state.auth.token != null){
             return (
-                <Menu theme="dark" defaultSelectedKeys={['1']} mode="inline">
-                    <Menu.Item key="2" icon={<DesktopOutlined />}>
+                <Menu theme="dark" /*defaultSelectedKeys={['1']}*/ mode="inline" >
+                    <Menu.Item key="2" icon={<DesktopOutlined />} >
                         <Link to="/profile">Your profile</Link>
                     </Menu.Item>
                     <Menu.Item key="3">
@@ -55,8 +56,8 @@ function Header() {
             
         } else {
             return (
-                <Menu theme="dark" defaultSelectedKeys={['1']} mode="inline">
-                    <Menu.Item key="2" icon={<DesktopOutlined />}>
+                <Menu theme="dark" /*defaultSelectedKeys={['1']}*/ mode="inline" >
+                    <Menu.Item key="2" icon={<DesktopOutlined />} >
                         <Link to="/login">Login</Link>
                     </Menu.Item>
                     <Menu.Item key="3" icon={<DesktopOutlined />}>
@@ -89,10 +90,10 @@ function Header() {
 
 
     return (
-            <Sider style={{ minHeight: '100vh' }}>
+            <Sider style={{ minHeight: '100vh', width: 580, fontFamily: "Roboto, sans-serif" }}>
                 
-                <Menu theme="dark" defaultSelectedKeys={['1']} mode="inline">
-                    <Menu.Item key="1" style={{ pointerEvents: 'none' }}>
+                <Menu theme="dark" mode="inline">
+                    <Menu.Item key="1" style={{ pointerEvents: 'none' }} >
                         GamesFlash
                     </Menu.Item>
                 </Menu>

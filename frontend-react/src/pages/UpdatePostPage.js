@@ -106,7 +106,7 @@ function UpdatePostPage() {
 
 
     return (
-        <Layout style={{ display: "flex", justifyContent: "center", alignItems: "center", minHeight: '100vh', minWidth: "100vw" }}>
+        <Layout style={{ display: "flex", justifyContent: "center", alignItems: "center", minHeight: '100vh', minWidth: "100vw", fontFamily: "Roboto, sans-serif" }}>
             <Form {...layout} name="nest-messages" validateMessages={validateMessages} onFinish = {onFinish}>
 
                 <Form.Item name={['post', 'content']} label="Post content">

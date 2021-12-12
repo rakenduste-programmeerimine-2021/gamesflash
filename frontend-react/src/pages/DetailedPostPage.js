@@ -174,7 +174,7 @@ function DetailedPostPage() {
       ];
 
     return(
-        <Layout style={{marginLeft: 50}}>
+        <Layout style={{ marginLeft: 50, fontFamily: "Roboto, sans-serif" }}>
             <Card title={state.post.postTitle} style={{ width: 300 }}>
         <p>{state.post.content}</p>
         </Card>

@@ -52,7 +52,7 @@ function AuthPage() {
   };
   if(state.auth.userName == null || state.auth.userName == undefined){
     return (
-    <Layout style={{ display: "flex", justifyContent: "center", alignItems: "center", minHeight: '100vh', minWidth: "100vw" }}>
+    <Layout style={{ display: "flex", justifyContent: "center", alignItems: "center", minHeight: '100vh', minWidth: "100vw", fontFamily: "Roboto, sans-serif"  }}>
       <Form
         name="basic"
         labelCol={{ span: 8 }}

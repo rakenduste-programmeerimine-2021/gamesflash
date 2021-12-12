@@ -165,7 +165,7 @@ function AdminPage() {
       }
 
     return(
-        <Layout>
+        <Layout style={{ fontFamily: "Roboto, sans-serif" }}>
         <h1 className="postCategoryLabel">ALL POSTS</h1>
         <Search placeholder="Search a post..." onChange={handleSearch} style={{ width: 250, paddingBottom: 5 }} />
         <Table dataSource={
