@@ -1,17 +1,74 @@
-//serveri testi setup jne on saadud siit:
-//https://dev.to/lukekyl/testing-your-express-js-backend-server-3ae6
 
-const server = require('../src/server');
-const supertest = require('supertest');
-const requestWithSupertest = supertest(server);
+let chai = require('chai');
+let server = require('../src/server');
+let chaiH = require('chai-http');
+chai.use(chaiH);
+let should = chai.should();
 
-describe('User endpoints', () => {
-
-    it('GET /user should show all users', async () => {
-      const res = await requestWithSupertest.get('/api/auth/admins');
-        expect(res.status).toEqual(200);
-        expect(res.type).toEqual(expect.stringContaining('json'));
-        //expect(res.body).toHaveProperty('users')
-    });
-  
+describe('authi testid', () => {
+  it('should succsessfully login', () => {
+    let login = {
+      userName: "testuser",
+      password: "Kergem1!"
+    }
+    chai.request(server)
+      .post('/api/auth/login')
+      .type('json')
+      .set('Content-Type', 'application/json')
+      .send(login)
+      .end((err, res) => {
+          res.should.have.status(200);
+          res.body.should.have.property('email');
+      });
   });
+
+  it('should throw signup error-400', () => {
+    let signup = {
+      userName: "testuser",
+      email: "tester@testing.com",
+      password: "Kergem1!"
+    }
+    chai.request(server)
+      .post('/api/auth/signup')
+      .type('json')
+      .set('Content-Type', 'application/json')
+      .send(signup)
+      .end((err, res) => {
+          res.should.have.status(400);
+      });
+  });
+
+  it('should throw delete error-400', () => {
+    let deleteUser = {
+      userName: "testuser",
+      aCC: 324
+    }
+    chai.request(server)
+      .post('/api/auth/delete')
+      .type('json')
+      .set('Content-Type', 'application/json')
+      .send(deleteUser)
+      .end((err, res) => {
+          res.should.have.status(400);
+      });
+  });
+  it('should return all users', () => {
+    chai.request(server)
+      .get('/api/auth/allusers')
+      .send()
+      .end((err, res) => {
+          res.should.have.status(200);
+          res.body.should.be.a('object');
+      });
+  });
+  it('should return all admins', () => {
+    chai.request(server)
+      .get('/api/auth/admins')
+      .send()
+      .end((err, res) => {
+          res.should.have.status(200);
+          res.body.should.be.a('object');
+      });
+  });
+});
+
