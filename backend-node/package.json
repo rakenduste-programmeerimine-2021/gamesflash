@@ -6,15 +6,19 @@
   "scripts": {
     "start": "node src/server.js",
     "dev": "nodemon --inspect=0.0.0.0:9000 -L src/server.js",
+
     "test": "jest"
+
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
+
     "chai": "^4.3.4",
     "cross-env": "^7.0.3",
     "jest": "^27.4.4",
+
     "mongoose": "^6.0.6",
     "nodemon": "^2.0.12",
     "supertest": "^6.1.6"
@@ -34,4 +38,5 @@
       "/node_modules/"
     ]
   }
+
 }

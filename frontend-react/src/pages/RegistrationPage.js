@@ -1,4 +1,5 @@
 import React from 'react';
+
 import {
     Form,
     Input,
@@ -138,6 +139,7 @@ function RegistrationPage() {
                 
                     <Form.Item
                         data-testid="confrim_password"
+
                         name="confirm"
                         label="Confirm PW"
                         dependencies={['password']}

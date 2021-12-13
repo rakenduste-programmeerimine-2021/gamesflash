@@ -2,6 +2,7 @@ import { Form, Input, Button, message, Layout } from 'antd';
 import { Context } from "../store";
 import { loginUser } from "../store/actions";
 import React, { useContext } from 'react';
+
 import 'antd/dist/antd.css';
 import '../components/App.css';
 //kui kasutame järgnevat, siis:
@@ -10,6 +11,7 @@ import '../components/App.css';
 
 function AuthPage() {
   const [state, dispatch] = useContext(Context);
+
 
     const onFinish = (values) => {
       const userData = {   
