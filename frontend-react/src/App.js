@@ -11,6 +11,7 @@ import SocialPosts from "./pages/SocialPosts";
 import GamingPosts from "./pages/GamingPosts";
 import DetailedPostPage from "./pages/DetailedPostPage";
 import AdminPage from "./pages/AdminPage";
+import logo from "./img/GamesFlash.png";
 
 function App() {
   const { Content, Footer } = Layout;
@@ -22,6 +23,9 @@ function App() {
             <div id="container">
               <Content>
                 <Switch>
+                  <Route exact path="/">
+                    <img src={logo} alt="Logo" style={{ height: "700px", width: "700px", marginLeft: "320px", marginTop: "65px" }} />
+                  </Route>
                   <Route exact path="/login" component={AuthPage} />
                   <Route exact path="/register" component={RegistrationPage} />
                   <Route exact path="/profile" component={ProfilePage} />

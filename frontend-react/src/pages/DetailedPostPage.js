@@ -25,7 +25,6 @@ function DetailedPostPage() {
           throw new Error("This post does not exist!");
         }
     }).then(data => {
-        console.log(data);
         dispatch(addSinglePost(data));
         getComments(postID);
     }).catch((error) => {
@@ -54,12 +53,9 @@ function DetailedPostPage() {
     message.error(error.toString());
   }; 
 
-  
-  console.log(state);
-
   const handleSubmit = (e) => {
-    setCommentInput("");
     addNewComment();
+    setCommentInput("");
   };
 
   const addNewComment = () => {
@@ -69,8 +65,6 @@ function DetailedPostPage() {
       userName: state.auth.userName,
       commentContent: commentInput
     };
-
-    console.log("ENNE FETCHI");
 
     fetch("http://localhost:8081/api/comment/postcomment/", {
             method: "POST",
@@ -86,8 +80,6 @@ function DetailedPostPage() {
         }).catch((error) => {
             showError(error);
         })
-        console.log("PEALE FETCHI");
-        //dispatch(addComment(newComment));
   }
 
   let rows;   
@@ -105,76 +97,10 @@ function DetailedPostPage() {
       rows = []   
     };
 
-    console.log(state.comments);
-
-  const data = [
-    {
-      postid: state.comments.data.postID,
-      author: state.comments.data.userName,
-      content: (
-        <p>
-          {state.comments.data.content}
-        </p>
-      ),
-      datetime: (
-        state.comments.data.creationDate
-      ),
-    }
-  ]
-
-    const data2 = [
-        {
-          author: "OliverA",
-          content: (
-            <p>
-              Cool yo!
-            </p>
-          ),
-          datetime: (
-            new Date("1999").toLocaleString()
-          ),
-        },
-
-        {
-          author: 'Andy',
-          content: (
-            <p>
-              Congratulations man, really happy for you!!!!
-            </p>
-          ),
-          datetime: (
-            new Date("2021").toLocaleString()
-          ),
-        },
-
-        {
-            author: 'Enri',
-            content: (
-              <p>
-                Haha for sure, enjoy it :)
-              </p>
-            ),
-            datetime: (
-              new Date("2021").toLocaleString()
-            ),
-          },
-
-        {
-            author: state.auth.userName,
-            content: (
-              <p>
-                {commentInput}
-              </p>
-            ),
-            datetime: (
-              new Date("2021").toLocaleString()
-            ),
-          },
-
-      ];
+    console.log(state);
 
     return(
-        <Layout style={{marginLeft: 50}}>
+        <Layout style={{ marginLeft: 50, fontFamily: "Roboto, sans-serif", marginLeft: "20px", marginTop: "10px" }}>
             <Card title={state.post.postTitle} style={{ width: 300 }}>
         <p>{state.post.content}</p>
         </Card>
@@ -200,15 +126,15 @@ function DetailedPostPage() {
         />
 
         <Form onFinish={handleSubmit}>
-        <Form.Item name={['post', 'content']} label="Comment">
-                    <Input.TextArea value={commentInput} onChange={(e) => setCommentInput(e.target.value)} style={{ width: 300, height: 100 }} />
-                </Form.Item>
+          <Form.Item name={['post', 'content']} label="Comment" style={{ marginTop: "50px" }}>
+                      <Input.TextArea value={commentInput} onChange={(e) => setCommentInput(e.target.value)} style={{ width: 375, height: 100, marginTop: "30px", marginLeft: "-75px" }} />
+                  </Form.Item>
 
-                <Form.Item>
-                    <Button type="primary" htmlType="submit">
-                        Add new comment
-                    </Button>
-                </Form.Item>
+                  <Form.Item>
+                      <Button type="primary" htmlType="submit">
+                          Add new comment
+                      </Button>
+                  </Form.Item>
         </Form>
         </Layout>
     );

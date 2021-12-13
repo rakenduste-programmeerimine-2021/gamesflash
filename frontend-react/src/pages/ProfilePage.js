@@ -1,13 +1,7 @@
 import { Layout, Menu, Breadcrumb, Descriptions } from 'antd';
-import {
-    DesktopOutlined,
-    PieChartOutlined,
-    FileOutlined,
-    TeamOutlined,
-    UserOutlined,
-} from '@ant-design/icons';
-import { useContext, useState, useRef, useEffect } from "react";
+import { useContext } from "react";
 import { Context } from "../store";
+import "../components/App.css";
 
 function ProfilePage() {
     const { Header, Content, Footer, Sider } = Layout;
@@ -15,7 +9,7 @@ function ProfilePage() {
     const date = new Date(state.auth.creationDate).toLocaleString();
 
     return (
-            <Layout className="site-layout">
+            <Layout className="site-layout" style={{ fontFamily: "Roboto, sans-serif", marginTop: "-65px" }}>
                 <Header className="site-layout-background" style={{ padding: 0 }} />
                 <Content style={{ margin: '0 16px' }}>
                     <Breadcrumb style={{ margin: '16px 0' }}>

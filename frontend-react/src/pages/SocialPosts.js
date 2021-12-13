@@ -69,34 +69,22 @@ function SocialPosts() {
           sorter: (a, b) => new Date(a.date) - new Date(b.date),
         },
       ];
-      
-      const data = [
-        {
-          key: toString(state.posts.data.postID),
-          title: toString(state.posts.data.postTitle),
-          postid: toString(state.posts.data.postID),
-          user: toString(state.posts.data.userName),
-          date: toString(state.posts.data.creationDate),
-        },
-      ];
 
       const { Search } = Input;
 
       const handleSearch = (event) => {
         setSearch(event.target.value);
-        console.log(event.target.value);
       };
 
 
 return(
-    <Layout>
-        <h1 className="postCategoryLabel">SOCIAL</h1>
+    <Layout style={{ fontFamily: "Roboto, sans-serif", marginLeft: "20px", marginTop: "10px" }}>
+        <h1 className="postCategoryLabel" style={{ marginLeft: "5px" }}>SOCIAL</h1>
         <Search placeholder="Search a post..." onChange={handleSearch} style={{ width: 250, paddingBottom: 5 }} />
         <Table dataSource={
           rows.filter((json) =>
             json.title.toLowerCase().includes(search.toLowerCase())
           )
-          //rows
         } columns={columns} size="middle" />
     </Layout>
     );

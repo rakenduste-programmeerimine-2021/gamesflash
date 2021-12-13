@@ -1,8 +1,8 @@
-import { Table, Tag, Space, Layout, Input, message, } from 'antd';
+import { Table, Layout, Input, message, } from 'antd';
 import React, { useEffect, useContext } from "react";
 import { Context } from '../store';
 import { addPost, emptyPost } from '../store/actions';
-import { BrowserRouter, Link, Route, useHistory } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 
 function GamingPosts() {
@@ -70,8 +70,6 @@ function GamingPosts() {
           sorter: (a, b) => new Date(a.date) - new Date(b.date),
         },
       ];
-      
-      console.log(state);
 
       const data = [
         {
@@ -86,24 +84,18 @@ function GamingPosts() {
       const { Search } = Input;
       
       const handleSearch = (event) => {
-        setSearch(event.target.value);
-        console.log(event.target.value);
-        
+        setSearch(event.target.value);        
       };
-
-      console.log(data);
-      console.log(state);
     
 
   return(
-    <Layout>
-        <h1 className="postCategoryLabel">GAMING</h1>
+    <Layout style={{ fontFamily: "Roboto, sans-serif", marginLeft: "20px", marginTop: "10px" }}>
+        <h1 className="postCategoryLabel" style={{ marginLeft: "5px" }}>GAMING</h1>
         <Search placeholder="Search a post..." onChange={handleSearch} style={{ width: 250, paddingBottom: 5 }} />
         <Table dataSource={
           rows.filter((json) =>
             json.title.toLowerCase().includes(search.toLowerCase())
           )
-          //rows
         } columns={columns} size="middle" />
     </Layout>
   );

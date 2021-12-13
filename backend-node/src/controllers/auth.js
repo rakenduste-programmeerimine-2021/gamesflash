@@ -70,7 +70,7 @@ exports.deleteUser = async (req, res) => {
     if (!user) res.status(404).send("User with that nickname does not exist")
     res.status(200).send(`Successfully deleted the following user: ${user.userName}`)
   } else {
-    res.status(200).send(`Access denied`)
+    res.status(400).send(`Access denied`)
   }
   
 }
