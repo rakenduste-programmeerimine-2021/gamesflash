@@ -28,9 +28,7 @@ const initialUsers = {
   data: []
 }
 
-const initialUsers = {
-  data: []
-}
+
 
 const [combinedReducer, initialState] = combineReducers({
   posts: [postReducer, initialPosts],
