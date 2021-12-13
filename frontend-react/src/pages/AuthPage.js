@@ -2,12 +2,13 @@ import { Form, Input, Button, message, Layout } from 'antd';
 import { Context } from "../store";
 import { loginUser } from "../store/actions";
 import React, { useContext } from 'react';
-import { Link } from 'react-router-dom';
 import '../components/App.css'
+//kui kasutame järgnevat, siis:
+//saadud stack overflowist! https://stackoverflow.com/questions/57101831/react-router-how-do-i-update-the-url-without-causing-a-navigation-reload
+//setTimeout(() => { window.history.replaceState(null, "profile", "/profile"); }, 1000);
 
 function AuthPage() {
   const [state, dispatch] = useContext(Context);
-  var linkToMain = "http://localhost:3000/";
 
     const onFinish = (values) => {
       const userData = {   
@@ -29,18 +30,12 @@ function AuthPage() {
             }
         }).then(data => {
             dispatch(loginUser(data))
-            //kui kasutame järgnevat, siis:
-            //saadud stack overflowist! https://stackoverflow.com/questions/57101831/react-router-how-do-i-update-the-url-without-causing-a-navigation-reload
-            //setTimeout(() => { window.history.replaceState(null, "profile", "/profile"); }, 1000);
         }).catch((error) => {
             showError(error);
         })
     );
 
   };
-
-  //STATE log
-  console.log(state);
 
   const showError = (error) =>{
     message.error(error.toString());
@@ -57,12 +52,10 @@ function AuthPage() {
         name="basic"
         labelCol={{ span: 8 }}
         wrapperCol={{ span: 16 }}
-        //initialValues={{ remember: true }}
         initialValues={{ remember: false }}
         onFinish={onFinish}
         onFinishFailed={onFinishFailed}
         autoComplete="off"
-        //style={{ display: "flex", justifyContent: "center", alignItems: "center"}}
       >
         <Form.Item
           data-testid="username"

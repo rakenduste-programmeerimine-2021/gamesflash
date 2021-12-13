@@ -1,4 +1,4 @@
-import { Form, Input, InputNumber, Button, Layout, Select, Radio, message } from 'antd';
+import { Form, Input, Button, Layout, Radio, message } from 'antd';
 import { useContext } from "react";
 import { Context } from "../store";
 import { Link } from 'react-router-dom';
@@ -16,11 +16,9 @@ function CreatePostPage() {
         } else {
             cat = "gaming"
         }
-        console.log("esimene!")
         if(state.auth.userName == null || state.auth.userName == undefined ){
             message.error("You need to be logged in to create a post!");
         } else {        
-            console.log("hakkan väärtusi andma")
             cpostID = Date.now()
             const newPost = {
                 userName: state.auth.userName,
@@ -29,7 +27,6 @@ function CreatePostPage() {
                 content: values.content,
                 category: cat
             };
-            console.log("antud!")
             postFetch(newPost);
         };
         
@@ -58,13 +55,10 @@ function CreatePostPage() {
     };
 
     const onSuccess = (success) =>{
-        console.log("success gang")
         message.success(success.toString());
         return (
             <Link to= {"/post/"+cpostID} />
         )
-        //setTimeout(() => { window.location.reload(); }, 1000);
-        
     };
 
     const layout = {
@@ -87,7 +81,6 @@ function CreatePostPage() {
     };
     const [value, setValue] = React.useState(1);
     const onChange = e => {
-        console.log('radio checked', e.target.value);
         setValue(e.target.value);
     };
 

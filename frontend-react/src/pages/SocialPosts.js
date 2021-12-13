@@ -69,22 +69,11 @@ function SocialPosts() {
           sorter: (a, b) => new Date(a.date) - new Date(b.date),
         },
       ];
-      
-      const data = [
-        {
-          key: toString(state.posts.data.postID),
-          title: toString(state.posts.data.postTitle),
-          postid: toString(state.posts.data.postID),
-          user: toString(state.posts.data.userName),
-          date: toString(state.posts.data.creationDate),
-        },
-      ];
 
       const { Search } = Input;
 
       const handleSearch = (event) => {
         setSearch(event.target.value);
-        console.log(event.target.value);
       };
 
 
@@ -96,7 +85,6 @@ return(
           rows.filter((json) =>
             json.title.toLowerCase().includes(search.toLowerCase())
           )
-          //rows
         } columns={columns} size="middle" />
     </Layout>
     );

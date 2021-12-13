@@ -4,6 +4,12 @@ let server = require('../src/server');
 let chaiH = require('chai-http');
 chai.use(chaiH);
 let should = chai.should();
+//backendi testimiseks kasutatud lingid (võetud ka näiteid sellepärast tsiteerin)
+//https://www.chaijs.com/plugins/chai-http/
+//https://www.chaijs.com/
+//https://stackoverflow.com/questions/33986863/mocha-api-testing-getting-typeerror-app-address-is-not-a-function
+
+
 
 describe('authi testid', () => {
   it('should succsessfully login', () => {

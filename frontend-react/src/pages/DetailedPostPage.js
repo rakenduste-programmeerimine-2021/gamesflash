@@ -25,7 +25,6 @@ function DetailedPostPage() {
           throw new Error("This post does not exist!");
         }
     }).then(data => {
-        console.log(data);
         dispatch(addSinglePost(data));
         getComments(postID);
     }).catch((error) => {
@@ -54,9 +53,6 @@ function DetailedPostPage() {
     message.error(error.toString());
   }; 
 
-  
-  console.log(state);
-
   const handleSubmit = (e) => {
     setCommentInput("");
     addNewComment();
@@ -69,8 +65,6 @@ function DetailedPostPage() {
       userName: state.auth.userName,
       commentContent: commentInput
     };
-
-    console.log("ENNE FETCHI");
 
     fetch("http://localhost:8081/api/comment/postcomment/", {
             method: "POST",
@@ -86,8 +80,6 @@ function DetailedPostPage() {
         }).catch((error) => {
             showError(error);
         })
-        console.log("PEALE FETCHI");
-        //dispatch(addComment(newComment));
   }
 
   let rows;   
@@ -104,74 +96,6 @@ function DetailedPostPage() {
     } else {     
       rows = []   
     };
-
-    console.log(state.comments);
-
-  const data = [
-    {
-      postid: state.comments.data.postID,
-      author: state.comments.data.userName,
-      content: (
-        <p>
-          {state.comments.data.content}
-        </p>
-      ),
-      datetime: (
-        state.comments.data.creationDate
-      ),
-    }
-  ]
-
-    const data2 = [
-        {
-          author: "OliverA",
-          content: (
-            <p>
-              Cool yo!
-            </p>
-          ),
-          datetime: (
-            new Date("1999").toLocaleString()
-          ),
-        },
-
-        {
-          author: 'Andy',
-          content: (
-            <p>
-              Congratulations man, really happy for you!!!!
-            </p>
-          ),
-          datetime: (
-            new Date("2021").toLocaleString()
-          ),
-        },
-
-        {
-            author: 'Enri',
-            content: (
-              <p>
-                Haha for sure, enjoy it :)
-              </p>
-            ),
-            datetime: (
-              new Date("2021").toLocaleString()
-            ),
-          },
-
-        {
-            author: state.auth.userName,
-            content: (
-              <p>
-                {commentInput}
-              </p>
-            ),
-            datetime: (
-              new Date("2021").toLocaleString()
-            ),
-          },
-
-      ];
 
     return(
         <Layout style={{ marginLeft: 50, fontFamily: "Roboto, sans-serif" }}>

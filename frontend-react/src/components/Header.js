@@ -15,7 +15,6 @@ import styles from './App.css';
 function Header() {
     const [state, dispatch] = useContext(Context);
     const { Content, Footer, Sider } = Layout;
-    const { SubMenu } = Menu;
     function logout() {
         dispatch(logoutUser());
     }
@@ -90,7 +89,7 @@ function Header() {
 
 
     return (
-            <Sider style={{ minHeight: '100vh', width: 580, fontFamily: "Roboto, sans-serif" }}>
+            <Sider style={{ minHeight: '100vh', width: 560, fontFamily: "Roboto, sans-serif" }}>
                 
                 <Menu theme="dark" mode="inline">
                     <Menu.Item key="1" style={{ pointerEvents: 'none' }} >

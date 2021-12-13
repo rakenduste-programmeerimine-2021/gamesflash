@@ -1,12 +1,5 @@
 import { Layout, Menu, Breadcrumb, Descriptions } from 'antd';
-import {
-    DesktopOutlined,
-    PieChartOutlined,
-    FileOutlined,
-    TeamOutlined,
-    UserOutlined,
-} from '@ant-design/icons';
-import { useContext, useState, useRef, useEffect } from "react";
+import { useContext } from "react";
 import { Context } from "../store";
 import "../components/App.css";
 

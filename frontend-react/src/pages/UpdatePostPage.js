@@ -15,7 +15,6 @@ function UpdatePostPage() {
     var postID = parseInt(postIDraw);
 
     useEffect(() => {
-        console.log("olen postid " + postID)
         fetch("http://localhost:8081/api/post/post/"+postID, {
             method: "GET"
         }).then(response => {
