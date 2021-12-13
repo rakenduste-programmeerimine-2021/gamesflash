@@ -78,8 +78,8 @@ function SocialPosts() {
 
 
 return(
-    <Layout style={{ fontFamily: "Roboto, sans-serif" }}>
-        <h1 className="postCategoryLabel">SOCIAL</h1>
+    <Layout style={{ fontFamily: "Roboto, sans-serif", marginLeft: "20px", marginTop: "10px" }}>
+        <h1 className="postCategoryLabel" style={{ marginLeft: "5px" }}>SOCIAL</h1>
         <Search placeholder="Search a post..." onChange={handleSearch} style={{ width: 250, paddingBottom: 5 }} />
         <Table dataSource={
           rows.filter((json) =>

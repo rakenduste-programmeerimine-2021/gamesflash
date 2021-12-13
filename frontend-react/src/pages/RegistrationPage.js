@@ -75,7 +75,7 @@ function RegistrationPage() {
         };
     
         return (
-            <Layout style={{ display: "flex", justifyContent: "center", alignItems: "center", minHeight: '100vh', minWidth: "100vw", fontFamily: "Roboto, sans-serif" }}>
+            <Layout style={{ fontFamily: "Roboto, sans-serif", marginTop: "30px", marginLeft: "20px" }}>
                 <Form
                     {...formItemLayout}
                     form={form}
@@ -123,7 +123,7 @@ function RegistrationPage() {
                     <Form.Item
                     data-testid="password"
                         name="password"
-                        label="Password"
+                        label="PW"
                         rules={[
                             {
                                 min: 8, 
@@ -137,9 +137,9 @@ function RegistrationPage() {
                     </Form.Item>
                 
                     <Form.Item
-                    data-testid="confrim_password"
+                        data-testid="confrim_password"
                         name="confirm"
-                        label="Confirm Password"
+                        label="Confirm PW"
                         dependencies={['password']}
                         hasFeedback
                         rules={[

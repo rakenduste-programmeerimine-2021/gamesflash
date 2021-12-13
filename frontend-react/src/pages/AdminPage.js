@@ -165,8 +165,8 @@ function AdminPage() {
       }
 
     return(
-        <Layout style={{ fontFamily: "Roboto, sans-serif" }}>
-        <h1 className="postCategoryLabel">ALL POSTS</h1>
+        <Layout style={{ fontFamily: "Roboto, sans-serif", marginLeft: "20px", marginTop: "10px" }}>
+        <h1 className="postCategoryLabel" style={{ marginLeft: "-75px" }}>ALL POSTS</h1>
         <Search placeholder="Search a post..." onChange={handleSearch} style={{ width: 250, paddingBottom: 5 }} />
         <Table dataSource={
             postRows.filter((json) =>
@@ -174,7 +174,7 @@ function AdminPage() {
         )
           //rows
         } columns={postColumns} size="middle" />
-        <h1 className="allUsersLabel">ALL USERS</h1>
+        <h1 className="allUsersLabel" style={{ marginLeft: "363px" }}>ALL USERS</h1>
         <Search placeholder="Search a user..." onChange={handleSearch} style={{ width: 250, paddingBottom: 5 }} />
         <Table dataSource={
             userRows.filter((json) =>

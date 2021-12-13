@@ -105,21 +105,21 @@ function UpdatePostPage() {
 
 
     return (
-        <Layout style={{ display: "flex", justifyContent: "center", alignItems: "center", minHeight: '100vh', minWidth: "100vw", fontFamily: "Roboto, sans-serif" }}>
+        <Layout style={{ fontFamily: "Roboto, sans-serif", marginTop: "30px", marginLeft: "-30px" }}>
             <Form {...layout} name="nest-messages" validateMessages={validateMessages} onFinish = {onFinish}>
 
                 <Form.Item name={['post', 'content']} label="Post content">
-                    <Input.TextArea style={{ width: 500, height: 200 }} />
+                    <Input.TextArea style={{ width: 500, height: 200, marginTop: "40px", marginLeft: "-91px" }} />
                 </Form.Item>
 
                 <Form.Item wrapperCol={{ ...layout.wrapperCol, offset: 8 }}>
-                    <Button type="primary" htmlType="submit">
+                    <Button type="primary" htmlType="submit" style={{ width: "120px", marginLeft: "-90px" }}>
                         Update post
                     </Button>
                     
                 </Form.Item>
             </Form>
-                <Button type="primary" danger style={{ marginLeft: 0 }} onClick={() => deletePost()}>
+                <Button type="primary" danger style={{ width: "120px", marginLeft: "77px", marginTop: "-10px" }} onClick={() => deletePost()}>
                     Delete post
                 </Button>
         </Layout>

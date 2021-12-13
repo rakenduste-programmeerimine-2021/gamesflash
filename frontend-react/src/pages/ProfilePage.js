@@ -9,7 +9,7 @@ function ProfilePage() {
     const date = new Date(state.auth.creationDate).toLocaleString();
 
     return (
-            <Layout className="site-layout" style={{ fontFamily: "Roboto, sans-serif" }}>
+            <Layout className="site-layout" style={{ fontFamily: "Roboto, sans-serif", marginTop: "-65px" }}>
                 <Header className="site-layout-background" style={{ padding: 0 }} />
                 <Content style={{ margin: '0 16px' }}>
                     <Breadcrumb style={{ margin: '16px 0' }}>

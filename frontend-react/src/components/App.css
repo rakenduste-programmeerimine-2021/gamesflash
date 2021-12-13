@@ -61,3 +61,19 @@
   font-weight: 400;
   src: url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
 }
+
+.sider {
+  background-color: red;
+}
+
+.menu-item:hover {
+  background-color: #dddddd;
+}
+
+.menu-item {
+  background-color: #F0F2F5;
+}
+
+.menu-item:active {
+  color: #f77f00;
+}

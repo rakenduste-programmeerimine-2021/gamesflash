@@ -86,7 +86,7 @@ function CreatePostPage() {
 
 
     return (
-        <Layout style={{ display: "flex", justifyContent: "center", alignItems: "center", minHeight: '100vh', minWidth: "100vw", fontFamily: "Roboto, sans-serif"  }}>
+        <Layout style={{ fontFamily: "Roboto, sans-serif", marginTop: "30px", marginLeft: "-85px" }}>
             <Form {...layout} name="nest-messages" validateMessages={validateMessages} onFinish={onFinish}>
                 <Form.Item
                     name='title'

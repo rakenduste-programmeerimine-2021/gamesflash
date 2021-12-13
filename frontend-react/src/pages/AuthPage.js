@@ -2,7 +2,8 @@ import { Form, Input, Button, message, Layout } from 'antd';
 import { Context } from "../store";
 import { loginUser } from "../store/actions";
 import React, { useContext } from 'react';
-import '../components/App.css'
+import 'antd/dist/antd.css';
+import '../components/App.css';
 //kui kasutame järgnevat, siis:
 //saadud stack overflowist! https://stackoverflow.com/questions/57101831/react-router-how-do-i-update-the-url-without-causing-a-navigation-reload
 //setTimeout(() => { window.history.replaceState(null, "profile", "/profile"); }, 1000);
@@ -41,13 +42,12 @@ function AuthPage() {
     message.error(error.toString());
   };  
 
- 
   const onFinishFailed = (errorInfo) => {
     console.log('Failed:', errorInfo);
   };
   if(state.auth.userName == null || state.auth.userName == undefined){
     return (
-    <Layout style={{ display: "flex", justifyContent: "center", alignItems: "center", minHeight: '100vh', minWidth: "100vw", fontFamily: "Roboto, sans-serif"  }}>
+    <Layout style={{ fontFamily: "Roboto, sans-serif", marginTop: "30px", marginLeft: "20px" }}>
       <Form
         name="basic"
         labelCol={{ span: 8 }}

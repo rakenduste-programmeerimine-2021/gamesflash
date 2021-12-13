@@ -54,8 +54,8 @@ function DetailedPostPage() {
   }; 
 
   const handleSubmit = (e) => {
-    setCommentInput("");
     addNewComment();
+    setCommentInput("");
   };
 
   const addNewComment = () => {
@@ -97,8 +97,10 @@ function DetailedPostPage() {
       rows = []   
     };
 
+    console.log(state);
+
     return(
-        <Layout style={{ marginLeft: 50, fontFamily: "Roboto, sans-serif" }}>
+        <Layout style={{ marginLeft: 50, fontFamily: "Roboto, sans-serif", marginLeft: "20px", marginTop: "10px" }}>
             <Card title={state.post.postTitle} style={{ width: 300 }}>
         <p>{state.post.content}</p>
         </Card>
@@ -124,15 +126,15 @@ function DetailedPostPage() {
         />
 
         <Form onFinish={handleSubmit}>
-        <Form.Item name={['post', 'content']} label="Comment">
-                    <Input.TextArea value={commentInput} onChange={(e) => setCommentInput(e.target.value)} style={{ width: 300, height: 100 }} />
-                </Form.Item>
+          <Form.Item name={['post', 'content']} label="Comment" style={{ marginTop: "50px" }}>
+                      <Input.TextArea value={commentInput} onChange={(e) => setCommentInput(e.target.value)} style={{ width: 375, height: 100, marginTop: "30px", marginLeft: "-75px" }} />
+                  </Form.Item>
 
-                <Form.Item>
-                    <Button type="primary" htmlType="submit">
-                        Add new comment
-                    </Button>
-                </Form.Item>
+                  <Form.Item>
+                      <Button type="primary" htmlType="submit">
+                          Add new comment
+                      </Button>
+                  </Form.Item>
         </Form>
         </Layout>
     );
